@@ -23,12 +23,14 @@ const ans = await new Promise((resolve, reject) => {
 fdf(options)
 setTimeout(()=> {
 return resolve()
-},9000)
+},7000)
 
   
 })
       
      
     
-      return NextResponse.json({success: true})
+    const  response = NextResponse.json({success: true})
+    response.cookies.set('insta', "allready")
+    return response
 }

