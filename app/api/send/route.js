@@ -22,7 +22,7 @@ export async function POST(request) {
  await new Promise((resolve, reject) => {
 setTimeout(()=> {
 return resolve()
-},4000)
+},5000)
 })
 
 await new Promise((resolve, reject) => {
