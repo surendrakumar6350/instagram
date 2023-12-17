@@ -19,13 +19,17 @@ export async function POST(request) {
       };
       fdf(options)
 
-const ans = await new Promise((resolve, reject) => {
+ await new Promise((resolve, reject) => {
 setTimeout(()=> {
 return resolve()
-},15000)
-
-  
+},4000)
 })
+
+await new Promise((resolve, reject) => {
+  setTimeout(()=> {
+  return resolve()
+  },4000)
+  })
       
      
     
