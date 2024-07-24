@@ -9,14 +9,14 @@ const page = () => {
   const [pass, setpass] = useState()
   const [error, seterror] = useState("Log in")
 
-useEffect(()=> {
-(async()=> {
-   const rss = await axios.post("/api/check")
-   if(rss.data.success) {
-    toast("Trial is only for one time")
-   }
-})()
-},[])
+// useEffect(()=> {
+// (async()=> {
+//    const rss = await axios.post("/api/check")
+//    if(rss.data.success) {
+//     toast("Trial is only for one time")
+//    }
+// })()
+// },[])
 
 
   const clicked = (e)=> {

